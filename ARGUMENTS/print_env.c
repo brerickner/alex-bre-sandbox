@@ -13,7 +13,6 @@ int main (int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 
-	environ = env;
 	for(; environ[index]; index++)
 	{
 		print_string(environ[index]);
