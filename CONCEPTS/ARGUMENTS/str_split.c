@@ -3,13 +3,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char **tokenizer(char *str)
+char **tokenizer(char *str, char *deli)
 {
 	char *token;
-	int us = malloc(getline(&buffer, &buffsize, stdin));
+	char **buffer;
+	size_t *buffsize;
+	int gl = malloc(getline(&buffer, &buffsize, stdin));
 
-	token = strtok(buffer, " ");
-	gl = malloc
+	if(gl == -1)
+		return (NULL);
+	buffer = 
+	token = strtok(buffer, deli);
 	while (token != NULL)
 	{
 		printf("%s\n", token);
@@ -26,11 +30,5 @@ int main (int ac, char **av)
 	int index;
 	(void)ac;
 
-	for (index = 0; av; index++)
-	{
-		print_string(av[index]);
-		print_string(" ");
-	}
-	print_string("\n");
 	return (0);
 }
