@@ -14,32 +14,23 @@ char *_strdup(char *str)
         int i, len = 0;
 
         if (str == NULL)
-        {
                 return (NULL);
-        }
-        else
-        {
-                while (str[len] != '\0')
-                {
-                        len++;
-                }
+
+	for (len = 0; str[len]; len++)
+		;
 
         ptr = malloc(sizeof(char) * (len + 1));
 
         if (ptr == NULL)
-        {
                 return (NULL);
-        }
 
-        for (i = 0; i < len + 1; i++)
-        {
-                ptr[i] = str[i];
-        }
-        }
-return (ptr);
+        for (i = 0; i < (len + 1), ptr[i] = str[i]; i++)
+		;
+
+	return (ptr);
 }
 
-char **tokenizer(char *str, char *delim)
+char **tokenizer(char *str, const char *delim)
 {
         char *str2 = _strdup(str);
         char **buffer;
@@ -59,14 +50,13 @@ char **tokenizer(char *str, char *delim)
         i = 0;
         buffer[i] = strtok(str2, s);
         i++;
-        while (i <= delim_count)
+       while (i <= delim_count)
         {    
               buffer[i] = strtok(NULL, s);
               i++;
         }
 
         buffer[i] = NULL;
-
         return (buffer);
 }
 int print_string(char *str)
@@ -75,7 +65,7 @@ int print_string(char *str)
 }
 int main(void)
 {
-        int i = 0;
+        int i = 0, i2;
         char **token_array = tokenizer("Hello papa smirf", " ");
 
         while (token_array[i] != NULL)
@@ -85,8 +75,10 @@ int main(void)
         	printf("\n");
 	}
 
-        free(token_array);
+	for (i2 = 0; i2 < i ; i2++)
+		free(token_array[i2]);
+
+	free(token_array);
 
         return (0);
 }
-
